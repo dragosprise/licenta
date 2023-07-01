@@ -1,0 +1,11 @@
+@import url("https://cdnjs.cloudfare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+@import url("https://fonts.googleapis.com/csss2?family=Inter:wght@400;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+
+
+
+}
