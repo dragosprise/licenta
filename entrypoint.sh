@@ -21,7 +21,7 @@ echo "DB is ready."
 php artisan package:discover
 php artisan config:cache
 php artisan route:cache
-php artisan migrate --force --step
+php artisan migrate --force || true
 
 # Start php-fpm in foreground
 php-fpm -F
