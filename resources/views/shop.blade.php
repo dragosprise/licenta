@@ -1,6 +1,6 @@
 <x-app-layout>
     <style>
-     
+
         .product-item {
             border: 1px solid #ddd;
             padding: 20px;
