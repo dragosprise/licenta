@@ -30,7 +30,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 # 3. Setează folderul de lucru
 # -----------------------------
 WORKDIR /var/www
-
+COPY . .
 # -----------------------------
 # 4. Copiază Composer files și instalează dependențe
 # -----------------------------
@@ -43,7 +43,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # -----------------------------
 # 5. Copiază toate fișierele proiectului
 # -----------------------------
-COPY . .
+
 
 # -----------------------------
 # 6. Build Vite
