@@ -1,0 +1,4 @@
+touch database/seeders/.gitkeep
+git add database/seeders/.gitkeep
+git commit -m "Add seeders folder"
+git push
