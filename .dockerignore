@@ -1,0 +1,7 @@
+/vendor
+/node_modules
+/.git
+/.env
+/.idea
+/public/hot
+/public/build

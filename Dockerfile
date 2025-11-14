@@ -1,63 +1,57 @@
 # -----------------------------
-# PHP + extensions
+# 1. PHP 8.2 + extensions
 # -----------------------------
 FROM php:8.2-fpm
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    unzip \
-    zip \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    libzip-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
+    git curl unzip zip libpng-dev libonig-dev libxml2-dev libzip-dev libjpeg62-turbo-dev libfreetype6-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql mbstring bcmath gd zip pcntl
 
 # -----------------------------
-# NodeJS pentru Vite
+# 2. Node.js pentru Vite
 # -----------------------------
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs
 
 # -----------------------------
-# WORKDIR
+# 3. Set working directory
 # -----------------------------
 WORKDIR /var/www
 
 # -----------------------------
-# Copy tot proiectul
+# 4. Copy project
 # -----------------------------
 COPY . .
 
 # -----------------------------
-# Install Composer
+# 5. Composer install fara scripts
 # -----------------------------
 RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+    && mv composer.phar /usr/local/bin/composer \
+    && composer install --no-dev --no-interaction --prefer-dist --no-scripts
 
 # -----------------------------
-# Composer install (dupa copy)
-# -----------------------------
-RUN composer install --no-dev --no-interaction --prefer-dist
-
-# -----------------------------
-# Vite build
+# 6. Build assets Vite
 # -----------------------------
 RUN npm install && npm run build
 
 # -----------------------------
-# FIX PERMISSIONS
+# 7. Fix permissions
 # -----------------------------
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # -----------------------------
-# Start command
+# 8. Ensure ENTRYPOINT allows CMD
 # -----------------------------
-CMD php artisan migrate --force && \
+ENTRYPOINT ["sh", "-c"]
+
+# -----------------------------
+# 9. Start Laravel
+# -----------------------------
+CMD php artisan package:discover && \
+    php artisan migrate --force && \
     php artisan config:cache && \
     php artisan route:cache && \
     php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
