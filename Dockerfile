@@ -1,29 +1,60 @@
+# -----------------------------
+# 1. PHP 8.2 + extensions
+# -----------------------------
 FROM php:8.2-fpm
 
-# Install dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
+    git \
     curl \
+    unzip \
+    zip \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
-    zip \
-    unzip \
-    git
+    libzip-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo_mysql mbstring bcmath gd zip pcntl
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+# -----------------------------
+# 2. Node + NPM (pentru Vite)
+# -----------------------------
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs
 
-# Install composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Set working directory
+# -----------------------------
+# 3. Composer install
+# -----------------------------
 WORKDIR /var/www
 
-COPY . /var/www
+COPY composer.json composer.lock ./
 
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer
 
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
-EXPOSE 8000
+# -----------------------------
+# 4. Copy project files
+# -----------------------------
+COPY . .
+
+# -----------------------------
+# 5. Vite build (optional)
+# -----------------------------
+RUN npm install && npm run build
+
+# -----------------------------
+# 6. Laravel permissions
+# -----------------------------
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+# -----------------------------
+# 7. Start Command
+# Railway sets PORT automatically
+# -----------------------------
+CMD php artisan migrate --force && \
+    php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
