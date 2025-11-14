@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
-class User extends Authenticatable
+use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Notifications\VerifyEmail;
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -19,6 +21,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'tip_user',
+        'city',
         'email',
         'password',
     ];
@@ -42,4 +46,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function canAccessFilament(): bool
+    {
+        return $this->tip_user === 2;
+    }
+
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+    public function oferta_produs()
+    {
+     return $this->belongsTo(tip_produs::class);
+}
 }

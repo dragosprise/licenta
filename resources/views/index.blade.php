@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creator in Romania - Pagina principala</title>
     <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     @vite('resources/css/styles.css')
-   
+
 
 </head>
 <body>
-  
+
 
     <div class="main">
           <div class="header">
@@ -22,7 +23,7 @@
     <option value="fr">Français</option>
   </select>
   <script src="./js/langselector.js"></script>
-  
+
             {{-- <form action="{{ route('language.change', ['locale' => '']) }}" method="GET">
               @csrf
               <select name="language" onchange="this.form.submit()">
@@ -43,24 +44,24 @@
          --}}
 
 
-          
+
             @if (Auth::check())
             <form action="logout" method="post">
-             @csrf 
+             @csrf
              {{-- <p>Welcome, {{ Auth::user()->name }}</p> --}}
              <button class="auth-button" value="logout">Logout</button>
-            
+
          </form>
             @else
-                <a href="register"><button class="auth-button">Register</a></button>
-            <a href="login"><button class="auth-button">Login</a></button>   
+                <a href="register"><button class="auth-button">Register</button></a>
+            <a href="login"><button class="auth-button">Login</button></a>
             @endif
         </div>
              <div class="logo">
           <a href="/"><img src="./pics/logo.png" ></a>
              </div>
 
-         
+
 
               <div class="dropdown">
                      <button class="dropbtn">Visit</button>
@@ -87,11 +88,26 @@
                              <a href="2">Link 3</a>
                         </div>
                      </div>
-                     <a href="shop"><button class="dropbtn">Targ</a></button>
-                   
-                  
+              <div class="dropdown">
+                     <a href="shop"><button class="dropbtn">Targ </button></a>
+              </div>
+              <div class="dropdown">
+
+                  <button class="dropbtn">Exploreaza</button>
+{{--                  <div class="dropdown-content ">--}}
+{{--                      @foreach($categories as $categorie)--}}
+{{--                          <a class="dropdown-item" href="#">{{ $categorie->name }}</a>--}}
+{{--                      @endforeach--}}
+{{--                  </div>--}}
+
+              </div>
+
+
+
+
+
                                     {{-- <h1>List of Cities</h1>
-                                   
+
 
                                     @foreach ($cities as $city)
     <form action="{{ route('city.page') }}" method="POST">
@@ -103,16 +119,16 @@
 
 
 
-                
-                     
-              
-             
-              
+
+
+
+
+
            </div>
 <!--                       MIJLOC                  -->
             <div class="middle">
-              
-     
+
+
             <div class="slideshow-container">
 
 
@@ -149,7 +165,7 @@
 <script src="./js/slideshow.js"></script>
             <div class="firstbox">
               <div id="textbox">
-                <a href="ghid"><p>Buna ziua</p></a>
+{{--                <a href="ghid"><p>Buna ziua</p></a>--}}
               </div>
         </div>
    <h1>Welcome to Creator in Romania !</h1>
@@ -161,25 +177,30 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a tempus lorem. Vivamus ac ante id orci posuere semper. Morbi venenatis lectus sed nisi ultrices sollicitudin. Ut porttitor vestibulum dui. Praesent tempus ut sem tincidunt ornare. Quisque semper porttitor tortor ac placerat. Maecenas eget vulputate eros. Vestibulum sit amet arcu id nibh pretium gravida sit amet in justo. Integer vitae sem faucibus, imperdiet neque et, interdum ipsum. Proin sem nibh, ullamcorper ut placerat quis, laoreet sit amet enim. Cras nec ipsum aliquet, convallis augue eu, facilisis mauris. Ut neque sem, feugiat nec ipsum sed, rhoncus sodales lacus. Mauris et augue quis massa pretium tincidunt. Aenean scelerisque tempus purus, eget convallis enim ultrices semper. Praesent porttitor sapien rutrum nunc condimentum semper.</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a tempus lorem. Vivamus ac ante id orci posuere semper. Morbi venenatis lectus sed nisi ultrices sollicitudin. Ut porttitor vestibulum dui. Praesent tempus ut sem tincidunt ornare. Quisque semper porttitor tortor ac placerat. Maecenas eget vulputate eros. Vestibulum sit amet arcu id nibh pretium gravida sit amet in justo. Integer vitae sem faucibus, imperdiet neque et, interdum ipsum. Proin sem nibh, ullamcorper ut placerat quis, laoreet sit amet enim. Cras nec ipsum aliquet, convallis augue eu, facilisis mauris. Ut neque sem, feugiat nec ipsum sed, rhoncus sodales lacus. Mauris et augue quis massa pretium tincidunt. Aenean scelerisque tempus purus, eget convallis enim ultrices semper. Praesent porttitor sapien rutrum nunc condimentum semper.</p>
 
-    <section class="col-span-8 col-start-5 mt-10">
-      <article class="flex bg-gray-100 p-6">
-        <div>
-            <img src="https://i.pravatar.cc/100">
-        </div>
+{{--    <section class="col-span-8 col-start-5 mt-10">--}}
+{{--      <article class="flex bg-gray-100 p-6">--}}
+{{--        <div>--}}
+{{--            <img src="https://i.pravatar.cc/100">--}}
+{{--        </div>--}}
 
-        <div>
-          <header>
-              <h3 class="font-bold">John Doe</h3>
-           <p class="text-xs"><time> Posted 8 months ago</time></p>
-          </header>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget laoreet sapien, non suscipit mauris. Cras tincidunt risus sed accumsan consequat. Aenean sit amet accumsan justo. Vivamus sed urna ultricies, imperdiet magna ac, ultrices mauris. Nam lobortis consectetur justo in porttitor. Pellentesque dignissim ante vitae diam luctus feugiat. Aliquam sit amet velit quis nisi euismod rutrum at quis quam. Ut ornare nisi a maximus pellentesque.</p>
-        </div>
-      </article>
-    </section>
+{{--        <div>--}}
+{{--          <header>--}}
+{{--              <h3 class="font-bold">John Doe</h3>--}}
+{{--           <p class="text-xs"><time> Posted 8 months ago</time></p>--}}
+{{--          </header>--}}
+{{--          <p>--}}
+{{--            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget laoreet sapien, non suscipit mauris. Cras tincidunt risus sed accumsan consequat. Aenean sit amet accumsan justo. Vivamus sed urna ultricies, imperdiet magna ac, ultrices mauris. Nam lobortis consectetur justo in porttitor. Pellentesque dignissim ante vitae diam luctus feugiat. Aliquam sit amet velit quis nisi euismod rutrum at quis quam. Ut ornare nisi a maximus pellentesque.</p>--}}
+{{--        </div>--}}
+{{--      </article>--}}
+{{--    </section>--}}
+
+                @foreach($comments as $comment)
+                <x-comment :comment="$comment"></x-comment>
+                @endforeach
+
 
     @if (Auth::check())
-       
+
     @else
 <p>Login to comment</p>
 @endif
@@ -191,7 +212,7 @@
 <!--                  FOOTER               -->
 
              <footer class="footer">
-              
+
     <div class="waves">
       <div class="wave" id="wave1"></div>
       <div class="wave" id="wave2"></div>
@@ -205,7 +226,7 @@
       <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
           <ion-icon name="logo-twitter"></ion-icon>
         </a></li>
-   
+
       <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com">
           <ion-icon name="logo-instagram"></ion-icon>
         </a></li>
@@ -225,7 +246,7 @@
 
 
     </div>
-    
+
 
     </div>
 </body>

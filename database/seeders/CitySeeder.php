@@ -13,22 +13,22 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
-        $cities = [
-            [
-                'name' => 'Braila',
-                'country' => 'Romania',
-                'population' => 8622698,
-            ],
-            [
-                'name' => 'Bucuresti',
-                'country' => 'Romania',
-                'population' => 8982000,
-            ],
-            // Add more cities as needed
-        ];
-
-        foreach ($cities as $city) {
-            City::create($city);
-        }
+//        $cities = [
+//            [
+//                'name' => 'Braila',
+//                'country' => 'Romania',
+//                'population' => 8622698,
+//            ],
+//            [
+//                'name' => 'Bucuresti',
+//                'country' => 'Romania',
+//                'population' => 8982000,
+//            ],
+//            // Add more cities as needed
+//        ];
+//
+//        foreach ($cities as $city) {
+//            City::create($city);
+//        }
     }
 }

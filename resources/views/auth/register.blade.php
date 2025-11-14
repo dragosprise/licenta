@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        /*.icon {*/
+        /*    cursor: pointer;*/
+        /*    font-size: 24px;*/
+        /*    padding: 10px;*/
+        /*}*/
+        /*.hidden {*/
+        /*    display: none;*/
+        /*}*/
+    </style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -25,7 +35,14 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+{{--                        <div class="row mb-3">--}}
+{{--                            <label for="city_id" class="col-md-4 col-form-label text-md-end">{{ __('Oras') }}</label>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                            <input id="city_id" type="text" class="form-control @error('city_id') is-invalid @enderror" name="city_id" value="{{ old('city_id') }}" required autocomplete="name" autofocus>--}}
+
+
+
+                            <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Adresa de e-mail') }}</label>
 
                             <div class="col-md-6">
@@ -60,6 +77,12 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <div>
+                            <input type="checkbox" id="toggleCheckbox" style="display: none;">
+                            <label for="toggleCheckbox" class="icon">&#10007;</label> <!-- Cross initially -->
+                        </div>
+                        <div>Sunt de acord ca am citit termenii si conditiile conform GDPR <a href="https://www.dataprotection.ro/?page=noua%20_pagina_regulamentul_GDPR">(regulament GDPR)</a></div>
+
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -74,5 +97,15 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('toggleCheckbox').addEventListener('change', function() {
+        var label = document.querySelector('label[for="toggleCheckbox"]');
+        if (this.checked) {
+            label.innerHTML = '&#10003;'; // Change to checkmark
+        } else {
+            label.innerHTML = '&#10007;'; // Change to cross
+        }
+    });
+</script>
 @endsection
 

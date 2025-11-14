@@ -3,10 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\App;
-
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\TipProdusController;
+use App\Http\Controllers\MestesugController;
+use App\Http\Controllers\MapController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\MestesugarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,53 +23,51 @@ use Illuminate\Support\Facades\App;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/test', function () {
-    return view('test');
+Route::get('/buton', function () {
+    return view('buton');
 });
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('by-category');
+Route::get('/city/{post:slug}', [PostController::class, 'show'])->name('view');
 
-Route::get('/ghid', function () {
-    return view('ghid');
-});
+Route::get('/', [CategoryController::class, 'index']);
 
-Route::get('/shop', function () {
-    return view('shop');
-});
+Route::get('/map',[MapController::class, 'map2'] );
 
-Route::get('/zona1', function () {
-    return view('zona1');
-});
 
-Route::get('/zona2', function () {
-    return view('zona2');
-});
+Route::get('/shop', [TipProdusController::class, 'shop']);
+Route::get('/shop/{tip_produs:slug}', [TipProdusController::class, 'show']);
 
-Route::get('/zona3', function () {
-    return view('zona3');
-});
+Route::get('/shop2', [MestesugController::class,'shop']);
 
 Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/mestesugar', [MestesugarController::class, 'index'])->name('mestesugar.index');
+Route::post('/mestesugar', [MestesugarController::class, 'upload'])->name('mestesugar.upload');
 
-Route::get('/intro', function () {
-    return view('welcome');
-});
+Route::get('/adauga-produs', [PhotoController::class, 'index'])->name('form.create');
+Route::post('/adauga-produs', [PhotoController::class, 'upload'])->name('form.upload');
+
+Route::get('/adauga-mestesug', [MestesugController::class, 'index']);
+Route::post('/adauga-mestesug', [MestesugController::class, 'upload']);
+
+Route::get('mestesugari', [MestesugarController::class, 'show']);
 
 
-Route::get('/hello',function()
-{
-    return response('Hello world');
-});
 
-Route::get('/posts/{id}',function($id){
-   
-    return response('Post'.$id);
-})->where('id', '[0-9]+');
+
+//Route::get('/intro', function () {
+//    return view('welcome');
+//});
+
+//Route::get('/hello',function()
+//{
+//    return response('Hello world');
+//});
+
+//Route::get('/post/{id}',function($id){
 
 Route::get('/search', function(Request $request){
     dd($request->name . ' ' . $request->city);
@@ -74,20 +77,18 @@ Route::get('/search', function(Request $request){
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
 
 
-
 Auth::routes();
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
 
-
-Route::get('/city/{city}', 'App\Http\Controllers\CityController@show')->name('city.page');
-
-
-Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/language/{locale}', function ($locale) {
     if (!in_array($locale, ['en', 'ro', 'fr'])) {
         abort(400);
     }
-    
+
     App::setLocale($locale);
 
     // Redirect back to the previous page or any other desired page

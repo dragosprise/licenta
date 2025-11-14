@@ -1,11 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');*/
 
 *{
-  /* border: 1px solid red; */
+   /*border: 1px solid red;*/
    box-sizing: border-box;
 
 
 
+
+
+}
+.main{
+    width:100%;
+    height:100%;
 }
 .btnlgn{
   display: flex;
@@ -36,7 +42,7 @@
   display: flex;
   gap: 8px;
   margin-right: 8px;
- 
+
 }
 
 
@@ -56,40 +62,57 @@
 
 .header{
     background-color: white;
-    height: 250px;
+    min-height: 250px;
     text-align: center;
- 
+    /*display:flex;*/
+    /*flex-direction: column;*/
 
-    
-}
 
-.logo {
-  width: 350px;
-  height: 100px;
-  position: relative;
-  margin: 0 auto;
 
 }
+
+/*.logo {*/
+/*  width: 350px;*/
+/*  height: 100px;*/
+/*  position: relative;*/
+/*  margin: 0 auto;*/
+
+/*}*/
 
 .logo img {
-   position: absolute;
-   width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    position: relative;
+    width: 350px;
     display:block;
-    height: 100px;
+    height: 110px;
 
 }
+.category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Adjust spacing between categories */
+    position: relative;
+}
 
-.dropbtn{
-   
+.category-title {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.dropbtn {
     color: rgb(38, 0, 255);
     padding: 16px;
     font-size: 16px;
     border: none;
     text-align: center;
     position: relative;
-  }
+}
 
-  .dropbtn::after{
+.dropbtn::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -97,39 +120,63 @@
     background: #1d0eea;
     left: 0;
     bottom: 0;
-  }
+}
 
-
-
-  .dropdown {
+.dropdown {
     position: relative;
     display: inline-block;
     text-align: center;
-    
-    
-  }
+}
 
-  .dropdown-content {
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
-   
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
-  
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.category:hover {
+    background-color: #f9f9f9; /* Background color for category on hover */
+    /* Optionally, add box-shadow */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.category:hover .posts {
+    display: flex;
+}
+
+.posts {
+    display: none;
+    position: absolute;
+    left: 70%;
+    top: 0; /* Adjust as needed */
+    background-color: white; /* Solid background color */
+    padding: 10px; /* Adjust padding as needed */
+    flex-direction: column;
+    z-index: 2; /* Ensure it appears above other elements */
+}
+
 
   @keyframes fade1 {
     from {opacity: .4}
@@ -148,8 +195,7 @@ body {
     display: flex;
 
   min-height: 100vh;
-    /*background-color: #434753;
-*/
+
 }
 
 
@@ -169,7 +215,7 @@ body {
   max-width: 70%;
 }
 .middle h1{
-  margin: 0 auto;
+  margin: 0 auto 80px;
   text-align: center;
 }
 
@@ -185,7 +231,7 @@ body {
 }
 
 .mySlides img {
-  max-height: 300px;
+  max-height: 600px;
   width: 100%;
 }
 
@@ -292,6 +338,7 @@ body {
 .footer {
   position: relative;
   width: 100%;
+
   background: #3586ff;
   min-height: 100px;
   padding: 20px 50px;
@@ -408,4 +455,5 @@ body {
     background-position-x: 0px;
   }
 }
+
 

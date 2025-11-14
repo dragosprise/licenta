@@ -9,7 +9,7 @@
             text-align: center;
         }
         #map {
-            width: '100%';
+            width: 100%;
             height: 400px;
         }
     </style>
@@ -22,7 +22,7 @@
 
     <script src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' crossorigin=''></script>
     <script>
-                  const initialMarkers = <?php echo json_encode($initialMarkers); ?>;
+                  const initialMarkers = <?php $initialMarkers = ;echo json_encode($initialMarkers); ?>;
         let map, markers = [];
         /* ----------------------------- Initialize Map ----------------------------- */
         function initMap() {
@@ -45,7 +45,7 @@
 
         /* --------------------------- Initialize Markers --------------------------- */
         function initMarkers() {
-  
+
 
             for (let index = 0; index < initialMarkers.length; index++) {
 
@@ -76,7 +76,7 @@
             const data = initialMarkers[index];
             console.log(map);
             console.log(data.name);
-           
+
         }
 
         /* ----------------------- Handle Marker DragEnd Event ---------------------- */

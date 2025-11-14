@@ -8,11 +8,15 @@ class City extends Model
 {
     protected $table = 'cities';
 
-    protected $fillable = ['name', 'country', 'population'];
+    protected $fillable = ['name', 'region', 'population'];
 
     // Relationships
-    public function country()
+    public function region()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Region::class);
+    }
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }

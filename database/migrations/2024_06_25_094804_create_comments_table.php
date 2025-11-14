@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('country');
-            $table->integer('population');
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('user_id');
+            $table->text('body');
             $table->timestamps();
+
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('comments');
     }
 };

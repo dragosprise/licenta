@@ -45,6 +45,9 @@ class UserResource extends Resource
                     ->hiddenOn('edit')
                     ->required()
                     ->visibleOn('create'),
+                Forms\Components\TextInput::make('tip_user')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 

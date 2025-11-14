@@ -17,7 +17,7 @@ class MapController extends Controller
                 'draggable' => true,
                 'name' => 'ceva'
             ],
-           
+
         ];
         return view('map', compact('initialMarkers'));
     }

@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
-Route::get('/posts', function()
+Route::get('/post', function()
 {
     return response()->json([
-            'posts' => [
+            'post' => [
                 'title' => 'Post One'
             ]
         ]);
