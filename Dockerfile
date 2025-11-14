@@ -25,4 +25,39 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 
 # -----------------------------
 # WORKDIR
-#
+# -----------------------------
+WORKDIR /var/www
+
+# -----------------------------
+# Copy tot proiectul
+# -----------------------------
+COPY . .
+
+# -----------------------------
+# Install Composer
+# -----------------------------
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer
+
+# -----------------------------
+# Composer install (dupa copy)
+# -----------------------------
+RUN composer install --no-dev --no-interaction --prefer-dist
+
+# -----------------------------
+# Vite build
+# -----------------------------
+RUN npm install && npm run build
+
+# -----------------------------
+# FIX PERMISSIONS
+# -----------------------------
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+# -----------------------------
+# Start command
+# -----------------------------
+CMD php artisan migrate --force && \
+    php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
