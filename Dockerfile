@@ -33,7 +33,7 @@ COPY composer.json composer.lock ./
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
-RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+RUN composer install --no-interaction
 
 # -----------------------------
 # 4. Copy project files
