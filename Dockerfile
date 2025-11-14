@@ -42,22 +42,28 @@ RUN curl -sS https://getcomposer.org/installer | php \
 COPY . .
 
 # -----------------------------
-# 6. Build assets cu Vite
+# 6. Asigură-te că folderul seeders există
+# -----------------------------
+RUN mkdir -p database/seeders \
+    && touch database/seeders/.gitkeep
+
+# -----------------------------
+# 7. Build assets cu Vite
 # -----------------------------
 RUN npm install && npm run build
 
 # -----------------------------
-# 7. Set permissions pentru storage și cache
+# 8. Set permissions pentru storage și cache
 # -----------------------------
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
 
 # -----------------------------
-# 8. Expose port-ul pentru Railway
+# 9. Expose port-ul pentru Railway
 # -----------------------------
-EXPOSE 8000
+EXPOSE 9000
 
 # -----------------------------
-# 9. Entrypoint pentru Laravel
+# 10. Entrypoint pentru Laravel
 # -----------------------------
 # Rulează migrațiile și pornește PHP-FPM
 CMD php artisan migrate --force && \
