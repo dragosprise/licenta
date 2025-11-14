@@ -27,7 +27,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 # 3. Set working directory
 # -----------------------------
 WORKDIR /var/www
-
+COPY . .
 # -----------------------------
 # 4. Copiere composer files + install
 # -----------------------------
@@ -39,7 +39,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # -----------------------------
 # 5. Copiere proiect
 # -----------------------------
-COPY . .
+
 
 # -----------------------------
 # 6. Asigură-te că folderul seeders există
