@@ -18,7 +18,9 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql mbstring bcmath gd zip pcntl \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+
+RUN sed -i 's/listen = .*/listen = 0.0.0.0:9000/' /usr/local/etc/php-fpm.d/www.conf
 
 # -----------------------------
 # 2. Node + NPM (pentru Vite)
