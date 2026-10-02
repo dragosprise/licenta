@@ -10,7 +10,7 @@ A web-based platform built to preserve, promote, and connect traditional Romania
 
 Traditional Romanian crafts are a vital part of cultural heritage, yet local artisans often lack modern digital tools to showcase their work, reach a broader audience, or sell their handcrafted goods. 
 
-This application bridges that gap by offering a centralized digital showcase for Romanian artisans, featured crafts, and cultural events. Built using **Laravel**, the application prioritizes performance, security, and an intuitive user experience for both creators and visitors.
+This application bridges that gap by offering a centralized digital showcase for Romanian artisans, featured crafts, and cultural events. Built using **Laravel** and **Filament**, the application provides a seamless experience for visitors and a powerful, modern administration panel for managing content, artisan profiles, and listings.
 
 ---
 
@@ -18,18 +18,17 @@ This application bridges that gap by offering a centralized digital showcase for
 
 - **Artisan Profiles:** Dedicated spaces for craftsmen to showcase their story, workshop details, geographical location, and traditional techniques.
 - **Crafts Catalog:** Categorized listings for traditional arts (e.g., pottery, wood carving, embroidery, weaving, leatherwork).
-- **Product Gallery:** Highlighting authentic handcrafted products with descriptions and contact/ordering mechanisms.
-- **Interactive Map / Discovery:** Locating artisans across Romania by region or craft domain.
-- **Admin & Content Management:** Streamlined dashboard for managing users, listings, verification, and site moderation.
+- **Product & Crafts Gallery:** Highlighting authentic handcrafted products with rich descriptions and contact/ordering mechanisms.
+- **Admin Panel (Filament):** Comprehensive backend dashboard for managing artisans, products, categories, media, and site settings with role-based access control.
 
 ---
 
-## 🛠️ Built With
+## 🛠️ Tech Stack
 
-- **Backend:** [Laravel](https://laravel.com/) (PHP Framework)
-- **Frontend:** Blade Templates / Tailwind CSS (or Bootstrap) / JavaScript
+- **Backend Framework:** [Laravel](https://laravel.com/) (PHP)
+- **Admin Panel:** [Filament v3](https://filamentphp.com/) (Livewire, Alpine.js, Tailwind CSS)
 - **Database:** MySQL / PostgreSQL
-- **Authentication:** Laravel Breeze / Jetstream
+- **Frontend / UI:** Blade, Livewire, Tailwind CSS
 
 ---
 
